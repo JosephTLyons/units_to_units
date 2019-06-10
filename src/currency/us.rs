@@ -34,12 +34,12 @@ mod tests {
     use assert_approx_eq::assert_approx_eq;
 
     #[test]
-    fn dollars_to_pennies() {
+    fn dollars_to_pennies_test() {
         assert_approx_eq!(convert(5.05, Units::Dollars, Units::Pennies), 505.0);
     }
 
     #[test]
-    fn quarters_to_dollars() {
+    fn quarters_to_dollars_test() {
         assert_approx_eq!(convert(25.0, Units::Quarters, Units::Dollars), 6.25);
     }
 }
