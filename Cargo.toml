@@ -1,0 +1,8 @@
+[package]
+name = "units_to_units"
+version = "0.1.0"
+authors = ["Joseph Lyons <josephtlyons@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+assert_approx_eq = "1.1.0"
