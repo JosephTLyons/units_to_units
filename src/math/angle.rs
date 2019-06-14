@@ -50,10 +50,6 @@ mod tests {
 
     #[test]
     fn degrees_to_turns() {
-        assert_approx_eq!(
-            convert(720.0, Units::Degrees, Units::Turns),
-            2.0,
-            0.0001
-        );
+        assert_approx_eq!(convert(720.0, Units::Degrees, Units::Turns), 2.0, 0.0001);
     }
 }
