@@ -42,4 +42,9 @@ mod tests {
     fn quarters_to_dollars_test() {
         assert_approx_eq!(convert(25.0, Units::Quarters, Units::Dollars), 6.25);
     }
+
+    #[test]
+    fn pennies_to_nickels_test() {
+        assert_approx_eq!(convert(1223.0, Units::Pennies, Units::Nickels), 244.6);
+    }
 }
