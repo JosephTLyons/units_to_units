@@ -1,18 +1,24 @@
 pub enum Units {
-    Radians,
     Degrees,
+    Radians,
+    Gradians,
 }
 
 pub fn convert(value: f64, from: Units, to: Units) -> f64 {
+    let degrees = to_degrees(value, from);
+
+    match to {
+        Units::Degrees => degrees,
+        Units::Radians => degrees * (std::f64::consts::PI / 180.0),
+        Units::Gradians => degrees * (10.0 / 9.0),
+    }
+}
+
+fn to_degrees(value: f64, from: Units) -> f64 {
     match from {
-        Units::Radians => match to {
-            Units::Radians => value,
-            Units::Degrees => value * (std::f64::consts::PI / 180.0),
-        },
-        Units::Degrees => match to {
-            Units::Radians => value * (180.0 / std::f64::consts::PI),
-            Units::Degrees => value,
-        },
+        Units::Degrees => value,
+        Units::Radians => value * (180.0 / std::f64::consts::PI),
+        Units::Gradians => value * (9.0 / 10.0),
     }
 }
 
@@ -23,6 +29,19 @@ mod tests {
 
     #[test]
     fn radians_to_degrees_test() {
-        assert_approx_eq!(convert(1.0, Units::Degrees, Units::Radians), 57.2958, 0.0001);
+        assert_approx_eq!(
+            convert(1.0, Units::Radians, Units::Degrees),
+            57.2957,
+            0.0001
+        );
+    }
+
+    #[test]
+    fn degrees_to_gradians_test() {
+        assert_approx_eq!(
+            convert(1.0, Units::Degrees, Units::Gradians),
+            (10.0 / 9.0),
+            0.0001
+        );
     }
 }
